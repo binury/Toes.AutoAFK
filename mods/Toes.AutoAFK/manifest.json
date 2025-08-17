@@ -1,0 +1,12 @@
+{
+  "Id": "Toes.AutoAFK",
+  "PackPath": "Toes.AutoAFK.pck",
+  "Dependencies": ["Sulayre.Lure", "Toes.Socks"],
+  "Metadata": {
+    "Name": "AutoAFK",
+    "Author": "Toes",
+    "Version": "1.0.1",
+    "Description": "Animated AFK title | Automatically let others know when you step away",
+    "Homepage": "https://github.com/binury/Toes.AutoAFK"
+  }
+}
