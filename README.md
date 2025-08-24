@@ -6,7 +6,8 @@ _Animated AFK title | Automatically let others know when you step away_
 
 ## About
 
-Triggers after 60 seconds, or whenever you unfocus the Webfishing window. Of course, *this is only visible to users who've also installed AutoAFK*
+Triggers after 60 seconds, or shortly thereafter when you unfocus (alt-tab out of) the Webfishing window.
+Of course, *this is only visible to users who've also installed AutoAFK*
 
 ## License
 
@@ -22,6 +23,11 @@ That means you’re free to use, fork, modify, and even commercialize this proje
 For the full details, see the [LICENSE](./LICENSE.txt) file.
 
 ## Changelog
+
+### v1.1.0 - Alt-tabbing rework
+- Alt-tabbing now reduces the AFK timeout period from 60s to around 12s
+    - This change will make it so alt-tabbing no longer immediately triggers an AFK status, just a quicker one
+- Restored cute welcome back message by request
 
 ### v1.0.0 - Final Major Release
 - Alt-tabbing now triggers the AFK title

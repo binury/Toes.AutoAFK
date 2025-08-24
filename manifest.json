@@ -1,7 +1,7 @@
 {
   "name": "AutoAFK",
   "author": "Toes",
-  "version_number": "1.0.1",
+  "version_number": "1.1.0",
   "website_url": "https://github.com/binury/Toes.AutoAFK",
   "description": "Animated AFK title | Automatically let others know when you step away",
   "dependencies": ["TeamLure-LureRefreshed-4.3.1", "toes-Socks-0.4.0"]

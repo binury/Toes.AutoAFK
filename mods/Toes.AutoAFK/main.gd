@@ -16,6 +16,7 @@ extends Node
 
 const MOD_ID = "Toes.AutoAFK"
 const AFK_TIMEOUT = 60000
+const TABBED_OUT_AFK_TIMEOUT = AFK_TIMEOUT * 1/5
 const CYCLE_COOLDOWN = 1500
 
 onready var Lure := get_node("/root/SulayreLure")
@@ -44,6 +45,9 @@ func _notification(what):
 func _exit_tree() -> void:
 	if not backup_title.empty(): _restore_title()
 
+func _get_timeout() -> int:
+	return TABBED_OUT_AFK_TIMEOUT if (not OS.is_window_focused() and not OS.is_window_always_on_top()) else AFK_TIMEOUT
+
 
 func _input(event: InputEvent) -> void:
 	# Ignore any controllers plugged in
@@ -56,12 +60,12 @@ func _process(delta: float) -> void:
 	if not Players.in_game or not Players.local_player: return
 
 	var NOW = Time.get_ticks_msec()
-	var player_is_afk  = NOW - AFK_TIMEOUT >= last_input_time or (not OS.is_window_focused() and not OS.is_window_always_on_top())
+	var player_is_afk  = NOW - _get_timeout() >= last_input_time
 	# var player_has_returned = NOW - AFK_TIMEOUT < last_input_time and not backup_title.empty()
 	if player_is_afk:
 		if backup_title.empty():
 			_backup_title()
-			PlayerData._send_notification("AFK")
+			PlayerData._send_notification("You are now AFK")
 			Players.set_cosmetic('title', MOD_ID + '.title0')
 			last_cycle_time = NOW
 			return
@@ -70,7 +74,7 @@ func _process(delta: float) -> void:
 			last_cycle_time = NOW
 			return
 	elif not backup_title.empty():
-		# PlayerData._send_notification("Welcome back!")
+		PlayerData._send_notification("Welcome back!")
 		_restore_title()
 		return
 	else:
